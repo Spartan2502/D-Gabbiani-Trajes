@@ -1,0 +1,52 @@
+/*
+a{
+	display:inline-block;
+	font-size:20px;
+	text-decoration:none;
+	margin:10px 10px 10px 10px;
+	color:#fff;
+	background:#3BA7E1;
+	padding: 10px 20px;
+	box-shadow: 0px 5px 0px #1D64A6;
+}
+
+a:hover{
+	box-shadow: 0px 2px 0px #1D64A6;
+}
+
+a:active{
+	box-shadow:none;
+}
+*/
+/*
+div{
+	background:#ccc;
+	width:100%;
+}
+*/
+/* General 
+   body {font-family: verdana,arial, sans-serif; font-size: 10px;}
+   */
+/* Contenido */
+   h1 {font-size: 16px; font-weight: bold; color: #0066CC;}
+   h2 {font-size: 12px; font-weight: bold; font-style: italic; color: black;}
+   h3 {font-size: 10px; font-weight: bold; color: black;}
+   .parrafocentrado {text-align: center;}
+
+/* Formulario */
+   form.borde {border: 1px dotted #0066CC; padding: 0.5em 0.2em; width: 80%;}
+   form.entrada {border: 1px dotted #0066CC; margin-right: 30%; margin-left: 30%;
+      padding: 0.3em}
+   form p {clear: left; margin: 0.2em; padding: 0.1em;}
+   form p label {float: left; width: 25%; font-weight: bold;}
+   form p label.etiqueta-entrada {float: left; width: 40%; font-weight: bold;}
+   .error {color: red;}
+
+/* Tablas */
+table th {font-size: 10px; font-weight: bold; color: white; 
+background: #0066CC; text-align: left;
+		border: 1px solid black;}
+		/*
+table td {font-size: 10px background: #CCCCCC; 
+border: 1px solid black; color:black;}
+*/    

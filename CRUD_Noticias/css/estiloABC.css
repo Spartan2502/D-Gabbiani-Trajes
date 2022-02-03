@@ -1,0 +1,7 @@
+/* Tablas */
+    table th {font-size: 10pt; font-weight: bold; color: white; background: #0066CC; 
+	text-align: left;
+		border: 1px solid black;}
+    table td {font-size: 10pt; background: #CCCCCC; border: 1px solid black;}
+    table td {font-size: 10pt; text-align: right; background: #FFFFFF;}
+    table td {font-size: 10pt; text-align: left; background: #FFFFFF;}

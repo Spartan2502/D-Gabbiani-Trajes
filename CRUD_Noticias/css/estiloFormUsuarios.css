@@ -1,0 +1,79 @@
+﻿/*
+Formularios
+*/
+form
+{
+   padding:2px;
+   cursor:pointer;
+   display:block;
+   width:330px;
+   margin: 0 auto;
+   text-align:left;
+} 
+
+form fieldset
+{
+   padding:10px 15 10px 15 ;
+   cursor:pointer;
+   display:block;
+   width:220px;
+   margin: 0 auto;
+   text-align:left;
+}
+
+
+form legend
+{
+   font-family: "Trebuchet MS", Geneva, Arial, Helvetica, sans-serif;
+   font-weight: bold;
+   text-align:center;
+}
+
+label{
+	font-size:16px;
+	/*label elemento en línea se pone como 
+	bloque para poner el elemento en la 
+	línea siguiente*/
+	display:block;
+	/*para asegurar que ocupe el 100% del 
+	acho del bloque*/
+	width:100%;
+	margin:5px 0 0 5px;
+    cursor:pointer;
+}
+/*Para que el usuario no pueda cambiar 
+el tamaño del elemento textarea*/
+textarea{
+	resize:vertical;
+	max-height:300px;
+	min-height:100px;
+}
+
+input, textarea{
+	margin-bottom:10px;
+	width:100%;
+	padding:10px;
+	/*para la separación entre los input 
+	y el bode*/
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	border:1px solid #ccc;
+}
+/*indica cuando el usuario selecciona un input
+para cambiar el color del borde*/
+input:focus, textarea:focus{
+	border:1px solid #1668C4;
+}
+/*todos los input que tengan el atributo
+type submit*/
+input[type="submit"]{
+	margin-bottom:0;
+	background:#1668C4;
+	color:#fff;
+	border:none;
+}
+input[type="submit"]:hover{
+	background:#4A88F4;
+	cursor:pointer;
+}
