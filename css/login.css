@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    place-content: center;
+    background-image: url(../img/alexander-naglestad-RFhq0SrrgEg-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body:before {
+  content: "";
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.09);
+  opacity: 1;
+
+}
+
+section {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+    width: 380px;
+    background: #fff;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 7.5rem;
+}
+
+.wrapper .title {
+    color: #d8d8d8;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 15px 15px 0px 0px;
+    background: linear-gradient(-135deg, #2a4972, #2b6472);
+}
+
+.wrapper form {
+  padding: 10px 30px 50px 30px;
+}
+
+.wrapper form .field {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.wrapper form .field input {
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid lightgray;
+  transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus,
+.wrapper form .field input:valid {
+  color: #4158d0;
+}
+
+.wrapper form .field label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  font-size: 17px;
+  color: #999;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus ~ label,
+.wrapper form .field input:valid ~ label {
+  top: 0;
+  color: #4158d0;
+  background: white;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+.wrapper form .pass-link {
+  color: #4158d0;
+  margin: 8px 0 0 10px;
+}
+
+.wrapper form .field input[type="submit"]{
+  color: #fff;
+  background: linear-gradient(-135deg, #2a4972, #2b6472);
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  padding-left: 0;
+  cursor: pointer;
+  transition: all 0,3s ease;
+}
+
+.wrapper form .field input[type="submit"]:active {
+  transform: scale(0.95);
+}
+
+.wrapper form .pass-link{
+  color: #4158d0;
+  margin: 8px 0 0 10px;
+  cursor: pointer;
+}
+
+.wrapper form .signup-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #262626;
+}
+
+.wrapper form .pass-link a,
+.wrapper form .signup-link a {
+  color: #4158d0;
+  text-decoration: none;
+}
+
+.wrapper form .pass-link a:hover,
+.wrapper form .signup-link a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+} */

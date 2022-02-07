@@ -46,13 +46,13 @@
         <div class="container">
             <div class="row">
                 <!-- <div class="col-1 info-section"></div> -->
-                <div class="col-4 info-section-important">
+                <div class="col-sm-4 col-lg-4 info-section-important">
                     <p>Confeccionamos para ti <font style="color: burlywood;">momentos inolvidables</font> desde 1990</p>
                     <a href="" class="cta"><button>Nuestras Colecciones</button></a>
                 </div>
                 <!-- <div class="col-1 info-section"></div> -->
                 
-                <div class="col-8">
+                <div class="col-sm-8 col-lg-8">
                     <img class="imagen-header" src="img/header.jpg" alt="">
                 </div>
             </div>
@@ -63,8 +63,8 @@
     </section>
     <div class="container">
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
+            <div class="col-sm-1 col-lg-1"></div>
+            <div class="col-sm-10 col-lg-10">
                 <table>
                     <tr>
                         <td>
@@ -75,7 +75,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-1"></div>
+            <div class="col-sm-1 col-lg-1"></div>
         </div>
     </div>
     
@@ -128,7 +128,7 @@
     <section class="service-cards">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-12 col-lg-12">
                     <table>
                         <tr>
                             <td>
