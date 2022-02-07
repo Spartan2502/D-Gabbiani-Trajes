@@ -1,80 +1,121 @@
-﻿/*
-Formularios
-*/
-form
-{
-   padding:2px;
-   cursor:pointer;
-   display:block;
-   width:330px;
-   margin: 0 auto;
-   text-align:left;
-} 
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-form fieldset
-{
-   padding:10px 15 10px 15 ;
-   cursor:pointer;
-   display:block;
-   width:220px;
-   margin: 0 auto;
-   text-align:left;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
-
-form legend
-{
-   font-family: "Trebuchet MS", Geneva, Arial, Helvetica, sans-serif;
-   font-weight: bold;
-   text-align:center;
+html, body {
+    height: 100%;
+    place-content: center;
+    background-image: url(../img/alexander-naglestad-MZbZQEx91Ek-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-label{
-	font-size:16px;
-	/*label elemento en línea se pone como 
-	bloque para poner el elemento en la 
-	línea siguiente*/
-	display:block;
-	/*para asegurar que ocupe el 100% del 
-	acho del bloque*/
-	width:100%;
-	margin:5px 0 0 5px;
-    cursor:pointer;
-}
-/*Para que el usuario no pueda cambiar 
-el tamaño del elemento textarea*/
-textarea{
-	resize:vertical;
-	max-height:300px;
-	min-height:100px;
+body:before {
+  content: "";
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.09);
+  opacity: 1;
+
 }
 
-input, textarea{
-	margin-bottom:10px;
-	width:100%;
-	padding:10px;
-	/*para la separación entre los input 
-	y el bode*/
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
-	border:1px solid #ccc;
+section {
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
-/*indica cuando el usuario selecciona un input
-para cambiar el color del borde*/
-input:focus, textarea:focus{
-	border:1px solid #1668C4;
+.wrapper {
+    width: 380px;
+    background: #fff;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
 }
-/*todos los input que tengan el atributo
-type submit*/
-input[type="submit"]{
-	margin-bottom:0;
-	background:#1668C4;
-	color:#fff;
-	border:none;
+
+.wrapper .title {
+    color: #d8d8d8;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 15px 15px 0px 0px;
+    background: linear-gradient(-135deg, #2a4972, #2b6472);
 }
-input[type="submit"]:hover{
-	background:#4A88F4;
-	cursor:pointer;
+
+.wrapper form {
+  padding: 10px 30px 50px 30px;
+}
+
+.wrapper form .field {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.wrapper form .field input {
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid lightgray;
+  transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus,
+.wrapper form .field input:valid {
+  color: #4158d0;
+}
+
+.wrapper form .field label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  font-size: 17px;
+  color: #999;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus ~ label,
+.wrapper form .field input:valid ~ label {
+  top: 0;
+  color: #4158d0;
+  background: white;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+.wrapper form .pass-link {
+  color: #4158d0;
+  margin: 8px 0 0 10px;
+}
+
+.wrapper form .field input[type="submit"]{
+  color: #fff;
+  background: linear-gradient(-135deg, #2a4972, #2b6472);
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  padding-left: 0;
+  cursor: pointer;
+  transition: all 0,3s ease;
+  margin-bottom: 1rem;
+}
+
+.wrapper form .field input[type="submit"]:active {
+  transform: scale(0.95);
 }

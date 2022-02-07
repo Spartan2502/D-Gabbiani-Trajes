@@ -69,14 +69,11 @@
 				}	
 		?>
 
-<!-- Navbar -->
+  <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
-  <!-- Container wrapper -->
   <div class="container-fluid">
-    <!-- Navbar brand -->
     <img src="img/D' Gabbiani.png" width="58" height="54" alt="">
 
-    <!-- Toggle button -->
     <button
       class="navbar-toggler"
       type="button"
@@ -98,12 +95,13 @@
           <a class="nav-link" href="#">Tienda de Accesorios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Registrarse</a>
+          <a class="nav-link" href="usuarios.php" tabindex="-1" aria-disabled="true">Registrarse</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+  <!-- Fin de navbar -->
 
 
 <section>
@@ -111,18 +109,23 @@
     <div class="title">Iniciar Sesión</div>
 <!-- form login -->
     <form action="" method="post">
+
       <div class="field">
         <input type="text" name="username" required>
         <label for="uname">Email Address</label>
       </div>
+
       <div class="field">
         <input type="password" name="password" required>
         <label for="psw">Password</label>
       </div>
+
       <div class="pass-link"><a href="#">Forgot password?</a></div>
+
       <div class="field">
         <input type="submit" value="Login">
       </div>
+
       <div class="signup-link">Not a member? <a href="usuarios.php">Signup now</a></div>
     </form>
     <!-- form login -->
