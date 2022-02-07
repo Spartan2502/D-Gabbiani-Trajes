@@ -14,9 +14,60 @@
   </head>
 <body>
 
-<?php 
-	include('database.php');		
-?>
+<?php
+// session_destroy()
+		session_start();
+		include('database.php');
+		$usuario=$password="";
+
+		if(isset($_SESSION['rol'])){
+			switch($_SESSION['rol']){
+				case 1:
+					header('location: ./admin.php');
+					break;
+
+				case 2:
+					header('location: ./user.php');
+					break;
+				default:
+			}
+		}
+
+		if(isset($_POST['username']) && isset($_POST['password'])){
+				$username = $_POST['username'];
+				$password = $_POST['password'];
+
+				$db = new Database();
+				$sql = "SELECT * FROM usuarios WHERE email =:username";
+				
+				$stmt = $db->connect()->prepare($sql);
+				
+				$stmt->execute(['username' => $username]);
+				$result = $stmt->fetch();
+				
+				if (!empty($result) && password_verify($password, $result["clave"])){
+					// validar rol
+					$rol = $result[6];
+					$_SESSION['rol'] = $rol;
+
+					switch($_SESSION['rol']){
+						case 1:
+              header('location: ./admin.php');
+              break;
+			
+						case 2:
+              header('location: ./user.php');
+              break;
+			
+						default:
+					}
+				
+				}else{
+					// no existe el usuario
+					echo '<script language="javascript">alert("Datos incorrectos!!!");</script>';
+				}
+				}	
+		?>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
@@ -58,13 +109,14 @@
 <section>
   <div class="wrapper">
     <div class="title">Iniciar Sesión</div>
-    <form action="#">
+<!-- form login -->
+    <form action="" method="post">
       <div class="field">
-        <input type="text" required>
+        <input type="text" name="username" required>
         <label for="uname">Email Address</label>
       </div>
       <div class="field">
-        <input type="password" required>
+        <input type="password" name="password" required>
         <label for="psw">Password</label>
       </div>
       <div class="pass-link"><a href="#">Forgot password?</a></div>
@@ -73,44 +125,9 @@
       </div>
       <div class="signup-link">Not a member? <a href="usuarios.php">Signup now</a></div>
     </form>
+    <!-- form login -->
   </div>
 </section>
-
-<!-- 		
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">SISTEMA</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="index.php">Salir de la aplicación</a>
-        </div>
-        </div>
-    </div>
-</nav>
-
-<form action="" method="post">
-  <div class="imgcontainer">
-    <img src="img/img_avatar2-2.png" alt="Avatar" class="avatar">
-  </div>
-
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-        
-    <button type="submit">Login</button>
-    <a href="usuarios.php" class="text-info">Regístrate aquí!!!</a>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-  </div>
-</form> -->
-
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
