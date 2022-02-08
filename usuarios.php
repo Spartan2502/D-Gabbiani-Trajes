@@ -118,6 +118,10 @@
 					</div>
 
 					<div class="field">
+					<input type="hidden" name="nivel" value="2" required/>
+					</div>
+
+					<div class="field">
 					<input type="submit" name="enviar" value="Enviar datos"/>	
 					</div>
 			</form>
