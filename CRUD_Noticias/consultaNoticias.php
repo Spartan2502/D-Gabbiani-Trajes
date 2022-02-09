@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Consulta de Noticias.</title>
+		<title>Consulta de Trajes.</title>
 		<meta charset="utf-8">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 	</head>
@@ -16,12 +16,12 @@
 			<div class="col-4">
 				<div class="list-group">
 					<a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-					Administración de Noticias
+					Administración de Trajes
 					</a>
-					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Noticia</a>
-					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Noticia</a>
-					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Noticia</a>
-					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Noticia</a>
+					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Traje</a>
+					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Traje</a>
+					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Traje</a>
+					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Traje</a>
 					<a href="" class="list-group-item list-group-item-action">Cerrar sesión</a>
 				</div>
     		</div>
@@ -35,11 +35,11 @@
 							<input type="text" class="form-control" id="clave" name ="clave" value="<?php echo $clave;?>"/>
 						</div>
 						<div class="mb-3">
-							<input type="submit" class="btn btn-primary" name="buscar" value="Consultar una noticia">
+							<input type="submit" class="btn btn-primary" name="buscar" value="Consultar un Traje">
 						</div>
 
 						<div class="mb-3">
-							<input type="submit" class="btn btn-primary" name="todo" value="Mostrar todas las noticias">
+							<input type="submit" class="btn btn-primary" name="todo" value="Mostrar todos los trajes">
 						</div>
 					</form>
 					<?php

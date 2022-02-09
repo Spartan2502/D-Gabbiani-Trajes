@@ -15,17 +15,17 @@
       <div class="col-md-4">
 	  <div class="list-group">
   <a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-  Administración de Noticias
+  Administración de Trajes
   </a>
-  <a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Noticia</a>
-  <a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Noticia</a>
-  <a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Noticia</a>
-  <a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Noticia</a>
-  <a href="#" class="list-group-item list-group-item-action">Cerrar sesión</a>
+  <a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Traje</a>
+  <a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Traje</a>
+  <a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Traje</a>
+  <a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Traje</a>
+  <a href="./Cerrar.php" class="list-group-item list-group-item-action">Cerrar sesión</a>
 </div>
       </div>
 	  <div class="col-8">
-	  <label class="form-label">LISTADO DE NOTICIAS REGISTRADAS</label>
+	  <label class="form-label">LISTADO DE TRAJES REGISTRADOS</label>
 		<?php
 			$db = new Database();
 			$query = $db->connect()->prepare('select * FROM noticias order by clave desc');

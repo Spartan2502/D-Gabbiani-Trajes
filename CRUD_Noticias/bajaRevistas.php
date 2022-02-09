@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Baja de Noticias</title>
+		<title>Baja de Trajes</title>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -15,19 +15,19 @@
 			<div class="col-4">
 				<div class="list-group">
 					<a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-					Administración de Noticias
+					Administración de Trajes
 					</a>
-					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Noticia</a>
-					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Noticia</a>
-					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Noticia</a>
-					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Noticia</a>
+					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Traje</a>
+					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Traje</a>
+					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Traje</a>
+					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Traje</a>
 					<a href="#" class="list-group-item list-group-item-action">Cerrar sesión</a>
 				</div>
     		</div>
 				<div class="col-8">
 					<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Clave de noticia a eliminar:</label>
+							<label for="exampleFormControlInput1" class="form-label">Clave de traje a eliminar:</label>
 							<input type="text" class="form-control" id="clave"  value="<?php echo $clave;?>" name ="clave">
 						</div>
 						<div class="mb-3">
@@ -87,7 +87,7 @@
 								if (!$query){
 									echo "Error".$query->errorInfo();
 								}
-								echo "<br /><hr />Registro de noticia eliminado.";
+								echo "<br /><hr />Registro de Traje eliminado.";
 								// Cerrar conexión 
 							$query->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
 							$query = null; // obligado para cerrar la conexión

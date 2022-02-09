@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-     <title>Cambio en los datos de las noticias</title>
+     <title>Cambio en los datos de las Trajes</title>
 	 <meta charset="utf-8">
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 	 </head>
@@ -27,18 +27,18 @@
 				<div class="col-4">
 				<div class="list-group">
 					<a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-					Administración de Noticias
+					Administración de Trajes
 					</a>
-					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Noticia</a>
-					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Noticia</a>
-					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Noticia</a>
-					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Noticia</a>
+					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Traje</a>
+					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Traje</a>
+					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Traje</a>
+					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Traje</a>
 					<a href="#" class="list-group-item list-group-item-action">Cerrar sesión</a>
 				</div>
     		</div>
 					<div class="col-8">
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Clave de noticia a modificar:</label>
+							<label for="exampleFormControlInput1" class="form-label">Clave del traje a modificar:</label>
 							<input type="text" class="form-control" id="clave"  name="clave" value="<?php echo $clave;?>">
 						</div>
 						<div class="mb-3">
@@ -60,18 +60,18 @@
 							echo
 								'<div class="mb-3">
 									<label for="exampleFormControlInput1" 
-										class="form-label">Clave de noticia a modificar:</label>
+										class="form-label">Clave del traje a modificar:</label>
 									<input type="text" class="form-control" value="'.$row['clave'].'" disabled/>
 								</div>'.
 								'<div class="mb-3">
 									<label for="exampleFormControlInput1" 
-										class="form-label">Título de la noticia:</label>
+										class="form-label">Título del Traje:</label>
 									<input type="text" class="form-control" lang="es" href="qa-html-language-declarations.es"
 										name="titulo" value ="'.$row['titulo'].'"/>
 								</div>'.
 								'<div class="mb-3">
 									<label for="exampleFormControlInput1" 
-										class="form-label">Texto de la noticia:</label>
+										class="form-label">Texto del Traje:</label>
 									<textarea class="form-control" name="texto" rows="5" cols="40">'.$row['texto'].'</textarea>
 								</div>'.
 								'<div class="mb-3">
@@ -89,7 +89,7 @@
 									</select>
 								</div>'.
 								'<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Tipo de noticias:</label>
+									<label for="exampleFormControlInput1" class="form-label">Tipo de Traje:</label>
 									<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Local"'.$isCheckedL.' />Local
 									<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Nacional"'.$isCheckedN.' />Nacional
 									<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Internacional"'.$isCheckedI.' />Internacional
@@ -98,7 +98,7 @@
 									<button type="submit" class="btn btn-primary" name="cambiar">Cambiar datos</button>
 								</div>';
 						}else if ($query -> rowCount() <= 0){
-							echo "no existe esa clave de Noticia.";
+							echo "no existe esa clave de Traje.";
 						}		 
 				}//if(isset($_REQUEST[''buscar]))
 				

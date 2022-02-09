@@ -35,7 +35,7 @@
 				$campos = array();
 
 				if($categoria==""){
-				array_push($campos, "Debes elegir una categoría para la noticia!!!");
+				array_push($campos, "Debes elegir una categoría para el Traje!!!");
 				}
 				
 				if($titulo == ""){
@@ -64,12 +64,12 @@
     		<div class="col-4">
 					<div class="list-group">
 						<a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-							Administración de Noticias
+							Administración de Trajes
 						</a>
-						<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Noticia</a>
-						<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Noticia</a>
-						<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Noticia</a>
-						<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Noticia</a>
+						<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar traje</a>
+						<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar traje</a>
+						<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar traje</a>
+						<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar traje</a>
 						<a href="#" class="list-group-item list-group-item-action">Cerrar sesión</a>
 					</div>
     		</div>
@@ -82,7 +82,7 @@
 								<input type="text" class="form-control" id="id"  value="<?php echo $numero;?>" name ="id" disabled>
 						</div>
 						<div class="mb-3">
-							<label for="clave" class="form-label">Clave de noticia:</label>
+							<label for="clave" class="form-label">Clave de traje:</label>
 								<input type="text" 
 								class="form-control" 
 								id="clave"  
@@ -92,17 +92,17 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="titulo" class="form-label">Título de la noticia:</label>
+							<label for="titulo" class="form-label">Nombre del traje:</label>
 								<input type="text" 
 								class="form-control" 
 								id="titulo"  
 								value="<?php echo $titulo;?>" 
 								name ="titulo" 
-								placeholder="Encabezado de la noticia">
+								placeholder="Nombre del Traje">
 						</div>
 
 						<div class="mb-3">
-								<label for="texto" class="form-label">Texto de la noticia:</label>
+								<label for="texto" class="form-label">Descripcion del traje:</label>
 								<textarea class="form-control" 
 								id="texto" name="texto" 
 								rows="3"
@@ -118,74 +118,69 @@
 								value="<?php echo date("Y-m-d");?>">
 						</div>
 						<div class="mb-3">
-							<label for="tipo" class="form-label">Tipo de noticia:</label>
+							<label for="tipo" class="form-label">Tipo de traje:</label>
 							<div class="form-check">
 								<input class="form-check-input" 
 									type="radio" 
 									name="tipo" 
-									value="Local" 
+									value="Nuevo" 
 									id="tipol"
 									<?php 
-										if($tipo=="Local") 
+										if($tipo=="Nuevo") 
 											echo "checked" 
-									?> checked>Local
+									?> checked>Nuevo
 									<label class="form-check-label" for="tipol">
-										Local
+										Nuevo
 									</label>
 							</div>
 							<div class="form-check">
 								<input class="form-check-input" 
 									type="radio" 
 									name="tipo"
-									value="Nacional" 
+									value="Semi-Nuevo" 
 									id="tipon"
 									<?php 
-										if($tipo=="Nacional") 
+										if($tipo=="Semi-Nuevo") 
 											echo "checked" 
 									?>>
 								<label class="form-check-label" for="tipon">
-									Nacional
+									Semi-Nuevo
 								</label>
 							</div>
 							<div class="form-check">
 								<input class="form-check-input" 
 									type="radio" 
 									name="tipo" 
-									value="Internacional" 
+									value="Usado" 
 									id="tipoi"
 									<?php 
-										if($tipo=="Internacional") 
+										if($tipo=="Usado") 
 											echo "checked" 
 									?>>
 								<label class="form-check-label" for="tipoi">
-								Internacional
+								Usado
 								</label>
 							</div><!--class="form-check"-->	  
 						</div><!--class="mb-3"-->
 						<div class="mb-3">
-							<label for="categoria" class="form-label">Categoría de la noticia:</label>
+							<label for="categoria" class="form-label">Categoría del traje:</label>
 							<select class="form-select" aria-label="Default select example" name="categoria" id="categoria">
 								<option selected>Selecciona una categoría</option>
-								<option value="Principal"
+								<option value="Ceremonial"
 									<?php 
-									if($categoria=="Principal") 
+									if($categoria=="Ceremonial") 
 										echo "selected" 
-									?>>Principal</option>
-								<option value="Clasificado"
+									?>>Ceremonial</option>
+								<option value="Charro"
 									<?php 
-									if($categoria=="Clasificado") 
+									if($categoria=="Charro") 
 										echo "selected" 
-									?>>Clasificado</option>
-								<option value="Policiaco"
+									?>>Charro</option>
+								<option value="Gala"
 									<?php 
-									if($categoria=="Policiaco") 
+									if($categoria=="Gala") 
 										echo "selected" 
-									?>>Policiaco</option>
-								<option value="Deportes"
-									<?php 
-										if($categoria=="Deportes") 
-											echo "selected" 
-									?>>Deportes</option>
+									?>>Gala</option>
 							</select>
 						</div><!--class="mb-3"-->
 						<div class="mb-3">
@@ -222,7 +217,7 @@
 					if (!$query){
 						echo "Error:",$sql->errorInfo();
 					}
-					echo "<br> LA NOTICIA FUE DADA	DE ALTA.";
+					echo "<br> El Traje FUE DADO	DE ALTA.";
 					echo "<br><h2>Datos de entrada:</h2>";
 					echo "Clave: ".$_POST['clave'];
 					echo "<br>";
@@ -236,7 +231,7 @@
 					echo "<br>";
 					echo "Categoría: ".$_REQUEST['categoria'];
 					}else if ($query -> rowCount() > 0){
-						echo "<br> YA EXISTE UNA NOTICIA CON ESA CLAVE.";
+						echo "<br> YA EXISTE UN TRAJE CON ESA CLAVE.";
 					}
 					$query->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
 					$query = null; // obligado para cerrar la conexión
