@@ -23,7 +23,7 @@
 		if(isset($_SESSION['rol'])){
 			switch($_SESSION['rol']){
 				case 1:
-					header('location: ./admin.php');
+          header('location: ./CRUD_Noticias/menu.php');
 					break;
 
 				case 2:
@@ -52,7 +52,7 @@
 
 					switch($_SESSION['rol']){
 						case 1:
-              header('location: ./admin.php');
+              header('location: ./CRUD_Noticias/menu.php');
               break;
 			
 						case 2:

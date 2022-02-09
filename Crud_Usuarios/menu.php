@@ -4,7 +4,7 @@
 		$db = new Database();
 		
 		$query = $db->connect()->prepare('SELECT * FROM clientes ORDER BY id DESC');
-		$query->execute();
+		//$query->execute(); quitar comentario
 		$resultado=$query->fetchAll();
 
 	// metodo buscar
