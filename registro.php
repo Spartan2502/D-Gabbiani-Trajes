@@ -118,7 +118,7 @@
 					</div>
 
 					<div class="field">
-					<input type="hidden" name="nivel" value="2" required/>
+					<input type="hidden" name="nivel" value="1" required/>
 					</div>
 
 					<div class="field">

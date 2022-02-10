@@ -21,7 +21,7 @@
   <a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Traje</a>
   <a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Traje</a>
   <a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Traje</a>
-  <a href="./Cerrar.php" class="list-group-item list-group-item-action">Cerrar sesión</a>
+  <a href="../cerrar.php" class="list-group-item list-group-item-action">Cerrar sesión</a>
 </div>
       </div>
 	  <div class="col-8">

@@ -95,7 +95,7 @@
           <a class="nav-link" href="#">Tienda de Accesorios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="usuarios.php" tabindex="-1" aria-disabled="true">Registrarse</a>
+          <a class="nav-link" href="./registro.php" tabindex="-1" aria-disabled="true">Registrarse</a>
         </li>
       </ul>
     </div>
