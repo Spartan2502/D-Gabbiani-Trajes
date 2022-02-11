@@ -4,101 +4,72 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="icon" href="img/D' Gabbiani.png">
 	</head>
 	<body>
 		<?php
 			//include('index.php');
 			$clave = isset($_REQUEST['clave']) ? $_REQUEST['clave'] : null ;
 		?>	
-		<div class="container">
-			<div class="row">
-			<div class="col-4">
-				<div class="list-group">
-					<a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-					Administración de Trajes
-					</a>
-					<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar Traje</a>
-					<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar Traje</a>
-					<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar Traje</a>
-					<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar Traje</a>
-					<a href="#" class="list-group-item list-group-item-action">Cerrar sesión</a>
-				</div>
-    		</div>
-				<div class="col-8">
-					<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Clave de traje a eliminar:</label>
-							<input type="text" class="form-control" id="clave"  value="<?php echo $clave;?>" name ="clave">
-						</div>
-						<div class="mb-3">
-							<input type="submit" class="btn btn-primary" name ="buscar" id="buscar" value="Buscar clave!!!"/>
-						</div>
-						<?php
-							include('database.php');
-							$db = new Database();
-							if (isset($_REQUEST['buscar'])){
-								$clave=isset($_REQUEST['clave']) ? $_REQUEST['clave'] :  null;
-								$query = $db->connect()->prepare('select * FROM noticias where clave = :clave');
-								$query->setFetchMode(PDO::FETCH_ASSOC);
-								$query->execute(['clave' => $clave]);
-								$row = $query->fetch();
-								if($query -> rowCount() <= 0){
-									echo "<br /><br /><h2>No existe ese número de clave.</h2>";
-								}elseif ($query -> rowCount() > 0){
-									print ("<br/><br/><br/>");
-									print ("Datos del registro.");
-									print ("<br/><br/><hr/><br/>");
-									print ("<table class='table table-striped'>\n");
-										print ("<tr>\n");
-											print ("<th>Id</th>\n");
-											print ("<td>".$row['id']. "</td>\n");
-										print ("</tr>\n");
-										print ("<tr>\n");
-											print ("<th>Título</th>\n");
-											print ("<td>" . $row['titulo'] . "</td>\n");
-										print ("</tr>\n");
-										print ("<tr>\n");
-											print ("<th>Texto</th>\n");
-											print ("<td>" . $row['texto'] . "</td>\n");
-										print ("</tr>\n");
-										print ("<tr>\n");
-											print ("<th>Categoría</th>\n");
-											print ("<td>" . $row['categoria'] . "</td>\n");
-										//$variable = utf8_decode($variable);
-										print ("</tr>\n");
-										print ("<tr>\n");
-											print ("<th>Fecha</th>\n");
-											print ("<td>" .$row['fecha']. "</td>\n");
-										print ("</tr>\n");
-										print ("<tr>\n");
-											print ("<th>Clave</th>\n");
-											print ("<td>" . $row['clave'] . "</td>\n");
-										print ("</tr>\n");
-									print ("</table>\n");
-									print ("<br /><hr />");
-									print ("<input type='submit' name='borrar' value='Eliminar registro'/></form>\n");
-								}
-							}
-							if (isset($_REQUEST['borrar'])){
-								$clave=isset($_REQUEST['clave']) ? $_REQUEST['clave'] :  null;
-								
-								$query = $db->connect()->prepare('delete FROM noticias where clave = :clave');
-								$query->execute(['clave' => $clave]);
-								if (!$query){
-									echo "Error".$query->errorInfo();
-								}
-								echo "<br /><hr />Registro de Traje eliminado.";
-								// Cerrar conexión 
-							$query->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
-							$query = null; // obligado para cerrar la conexión
-							$db = null;
-							}
-						?>
-					</div>
-				<div class="col">
-				</div>
+	<!-- Navbar -->
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<img src="img/D' Gabbiani.png" alt="logo" width="55px">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="./AltaRevistas.php">Estado de Renta</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./consultaNoticias.php">Consultar Traje</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./cambiosNoticias.php">Modificar Renta</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Eliminar Traje</a>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</nav>
+	
+	<!-- Fin de navbar -->
+	
+	<section>
+		<div class="contact1">
+			<div class="container-contact1">
+				<div class="contact1-pic js-tilt" data-tilt>
+					<img src="img/eliminar.png" alt="IMG">
+				</div>
+				
+				<form class="contact1-form validate-form">
+					<span class="contact1-form-title">
+						Eliminar Traje
+					</span>
+					
+					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
+						<input class="input1" type="text" name="number" placeholder="">
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="container-contact1-form-btn">
+						<button class="contact1-form-btn">
+							<span>
+								Clave de traje a eliminar
+								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
