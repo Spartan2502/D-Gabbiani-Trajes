@@ -5,6 +5,8 @@
 		<title>Capturar datos en Revista</title>
 		<meta charset="UTF-8">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="icon" href="img/D' Gabbiani.png">
 	</head>
 	<body>
 		<?php 
@@ -59,139 +61,124 @@
 			}
 		?>
 		
-		<div class="container">
-  		<div class="row">
-    		<div class="col-4">
-					<div class="list-group">
-						<a href="menu.php" class="list-group-item list-group-item-action active" aria-current="true">
-							Administración de Trajes
-						</a>
-						<a href="AltaRevistas.php" class="list-group-item list-group-item-action">Agregar traje</a>
-						<a href="consultaNoticias.php" class="list-group-item list-group-item-action">Consultar traje</a>
-						<a href="cambiosNoticias.php" class="list-group-item list-group-item-action">Modificar traje</a>
-						<a href="bajaRevistas.php" class="list-group-item list-group-item-action">Eliminar traje</a>
-						<a href="#" class="list-group-item list-group-item-action">Cerrar sesión</a>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<img src="img/D' Gabbiani.png" alt="logo" width="55px">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Estado de Renta</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./consultaNoticias.php">Consultar Traje</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./cambiosNoticias.php">Modificar Renta</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./bajaRevistas.php">Eliminar Traje</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<!-- Fin de navbar -->
+	
+	<section>
+		<div class="contact1">
+			<div class="container-contact1">
+				<div class="contact1-pic js-tilt" data-tilt>
+					<img src="img/agregar.png" alt="IMG">
+				</div>
+				
+				<form class="contact1-form validate-form">
+					<span class="contact1-form-title">
+						Agregar Renta
+					</span>
+					
+					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
+						<input class="input1" type="text" name="number" placeholder="Folio">
+						<span class="shadow-input1"></span>
 					</div>
-    		</div>
-    		<div class="col-8">
-					<form method="POST" 
-						autocomplete="on"
-						action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Número de registro:</label>
-								<input type="text" class="form-control" id="id"  value="<?php echo $numero;?>" name ="id" disabled>
-						</div>
-						<div class="mb-3">
-							<label for="clave" class="form-label">Clave de traje:</label>
-								<input type="text" 
-								class="form-control" 
-								id="clave"  
-								value="<?php echo $clave;?>" 
-								name ="clave" 
-								placeholder="3 caracteres"/>
-						</div>
-
-						<div class="mb-3">
-							<label for="titulo" class="form-label">Nombre del traje:</label>
-								<input type="text" 
-								class="form-control" 
-								id="titulo"  
-								value="<?php echo $titulo;?>" 
-								name ="titulo" 
-								placeholder="Nombre del Traje">
-						</div>
-
-						<div class="mb-3">
-								<label for="texto" class="form-label">Descripcion del traje:</label>
-								<textarea class="form-control" 
-								id="texto" name="texto" 
-								rows="3"
-								value="<?php echo $texto;?>"></textarea>
-						</div>
-
-						<div class="mb-3">
-							<label for="fecha" class="form-label">Fecha:</label>
-								<input type="date" 
-								class="form-control" 
-								id="fecha"  
-								name ="fecha" 
-								value="<?php echo date("Y-m-d");?>">
-						</div>
-						<div class="mb-3">
-							<label for="tipo" class="form-label">Tipo de traje:</label>
-							<div class="form-check">
-								<input class="form-check-input" 
-									type="radio" 
-									name="tipo" 
-									value="Nuevo" 
-									id="tipol"
-									<?php 
-										if($tipo=="Nuevo") 
-											echo "checked" 
-									?> checked>Nuevo
-									<label class="form-check-label" for="tipol">
-										Nuevo
-									</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" 
-									type="radio" 
-									name="tipo"
-									value="Semi-Nuevo" 
-									id="tipon"
-									<?php 
-										if($tipo=="Semi-Nuevo") 
-											echo "checked" 
-									?>>
-								<label class="form-check-label" for="tipon">
-									Semi-Nuevo
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" 
-									type="radio" 
-									name="tipo" 
-									value="Usado" 
-									id="tipoi"
-									<?php 
-										if($tipo=="Usado") 
-											echo "checked" 
-									?>>
-								<label class="form-check-label" for="tipoi">
-								Usado
-								</label>
-							</div><!--class="form-check"-->	  
-						</div><!--class="mb-3"-->
-						<div class="mb-3">
-							<label for="categoria" class="form-label">Categoría del traje:</label>
-							<select class="form-select" aria-label="Default select example" name="categoria" id="categoria">
-								<option selected>Selecciona una categoría</option>
-								<option value="Ceremonial"
-									<?php 
-									if($categoria=="Ceremonial") 
-										echo "selected" 
-									?>>Ceremonial</option>
-								<option value="Charro"
-									<?php 
-									if($categoria=="Charro") 
-										echo "selected" 
-									?>>Charro</option>
-								<option value="Gala"
-									<?php 
-									if($categoria=="Gala") 
-										echo "selected" 
-									?>>Gala</option>
-							</select>
-						</div><!--class="mb-3"-->
-						<div class="mb-3">
-							<button type="submit" class="btn btn-primary" name ="enviar">Enviar datos.</button>
-						</div>
-					</form>	
-    		</div><!--div class="col-8"-->
-    		<div class="col">
-    		</div><!--class="col"-->
-  		</div><!--class="row"-->
-	</div><!--class="container"-->
+					
+					<div class="wrap-input1 validate-input" data-validate = "date is required">
+						<input class="input1" type="text" name="date" placeholder="Fecha de apartado">
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="wrap-input1 validate-input" data-validate = "Name is required">
+						<input class="input1" type="text" name="name" placeholder="Nombre del cliente">
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="wrap-input1 validate-input" data-validate = "Description is required">
+						<textarea class="input1" name="textarea" placeholder="Descripción de la prenda"></textarea>
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="wrap-input1 validate-input" data-validate="Date is required">
+						<label for="tipo" class="form-label">Fecha de entrega</label>
+						<label for="fecha" class="form-label"></label>
+						<input type="date" 
+						class="form-control input1" 
+						id="fecha"  
+						name ="fecha" 
+						value="">
+					</div>
+					
+					<div class="wrap-input1 validate-input" data-validate = "Amount is required">
+						<input class="input1" type="text" name="number" placeholder="Monto de la renta">
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="wrap-input1 validate-input" data-validate = "Advance is required">
+						<input class="input1" type="text" name="number" placeholder="Anticipo">
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="wrap-input1 validate-input" data-validate = "For paid is required">
+						<input class="input1" type="text" name="number" placeholder="Por pagar">
+						<span class="shadow-input1"></span>
+					</div>
+					
+					<div class="wrap-input1 validate-input">
+						<label for="categoria" class="form-label">Estado de Renta</label>
+						<select class="input1" aria-label="Default select example" name="categoria" id="categoria">
+							<option class="input1" selected>Selecciona una categoría</option>
+							<option value="Rentado"
+							<?php 
+							if($categoria=="Rentado") 
+							echo "selected" 
+							?>Rentado</option>
+							<option value="Entrado"
+							<?php 
+							if($categoria=="Entregado") 
+							echo "selected" 
+							?>Entregado</option>
+							<option value="Entregado"
+							<?php 
+							if($categoria=="Apartado") 
+							echo "selected" 
+							?>Apartado</option>
+						</select>
+					</div><!--class="mb-3"-->
+					
+					<div class="container-contact1-form-btn">
+						<button class="contact1-form-btn">
+							<span>
+								Generar Renta
+								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
 		<?php
 			if (isset($_REQUEST['enviar'])){
 				$query = $db->connect()->prepare('SELECT clave FROM noticias WHERE clave = :clave');
