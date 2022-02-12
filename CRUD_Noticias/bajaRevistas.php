@@ -9,8 +9,7 @@
 	</head>
 	<body>
 		<?php
-			//include('index.php');
-			$clave = isset($_REQUEST['clave']) ? $_REQUEST['clave'] : null ;
+			$folio = isset($_REQUEST['folio']) ? $_REQUEST['folio'] : null ;
 		?>	
 	<!-- Navbar -->
 	
@@ -48,23 +47,84 @@
 					<img src="img/eliminar.png" alt="IMG">
 				</div>
 				
-				<form class="contact1-form validate-form">
+				<form class="contact1-form validate-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<span class="contact1-form-title">
 						Eliminar Traje
 					</span>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
-						<input class="input1" type="text" name="number" placeholder="">
+						<input class="input1" type="text" name="folio" id="folio" placeholder="Ingresa el folio a eliminar" >
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="container-contact1-form-btn">
-						<button class="contact1-form-btn">
+						<button class="contact1-form-btn" type="submit" name ="buscar" id="buscar" value="Buscar folio">
 							<span>
-								Clave de traje a eliminar
+								Buscar
 								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 							</span>
 						</button>
+						<?php
+							include('./database.php');
+							$db = new Database();
+							if (isset($_REQUEST['buscar'])){
+								$clave=isset($_REQUEST['folio']) ? $_REQUEST['folio'] :  null;
+								$query = $db->connect()->prepare('select * FROM rentas where folio = :folio');
+								$query->setFetchMode(PDO::FETCH_ASSOC);
+								$query->execute(['folio' => $folio]);
+								$row = $query->fetch();
+								if($query -> rowCount() <= 0){
+									echo "<br /><br /><h2>No existe ese número de folio.</h2>";
+								}elseif ($query -> rowCount() > 0){
+									print ("<br/><br/><br/>");
+									print ("Datos del registro.");
+									print ("<br/><br/><hr/><br/>");
+									print ("<table class='table table-striped'>\n");
+										print ("<tr>\n");
+											print ("<th>folio</th>\n");
+											print ("<td>".$row['folio']. "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>Cliente</th>\n");
+											print ("<td>" . $row['nombre_cliente'] . "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>Descripcion</th>\n");
+											print ("<td>" . $row['descripcion'] . "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>Fecha Apartado</th>\n");
+											print ("<td>" . $row['fecha_apartado'] . "</td>\n");
+										//$variable = utf8_decode($variable);
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>Fecha Devolucion</th>\n");
+											print ("<td>" .$row['fecha_devolucion']. "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>saldo pendiente</th>\n");
+											print ("<td>" . $row['saldo_pendiente'] . "</td>\n");
+										print ("</tr>\n");
+									print ("</table>\n");
+									print ("<br /><hr />");
+									print ("<input type='submit' name='borrar' id='borrar' value='Eliminar registro'/></form>\n");
+								}
+							}
+							if (isset($_REQUEST['borrar'])){
+								$folio=isset($_REQUEST['folio']) ? $_REQUEST['folio'] :  null;
+								
+								$query = $db->connect()->prepare('DELETE FROM rentas WHERE folio == :folio');
+								$query->execute(['folio' => $folio]);
+								if (!$query){
+									echo "Error".$query->errorInfo();
+								}
+								echo "<br /><hr />Registro de renta eliminado.";
+								// Cerrar conexión 
+							$query->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
+							$query = null; // obligado para cerrar la conexión
+							$db = null;
+							}
+						?>
 					</div>
 				</form>
 			</div>

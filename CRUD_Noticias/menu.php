@@ -28,7 +28,7 @@
 	  <label class="form-label">LISTADO DE TRAJES REGISTRADOS</label>
 		<?php
 			$db = new Database();
-			$query = $db->connect()->prepare('select * FROM noticias order by clave desc');
+			$query = $db->connect()->prepare('select * FROM rentas order by clave desc');
 				$query->setFetchMode(PDO::FETCH_ASSOC);
 				$query->execute();
 				//$row = $query->fetch();

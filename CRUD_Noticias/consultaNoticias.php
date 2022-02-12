@@ -11,7 +11,7 @@
 		<?php
 			//include('index.php');
 			include('database.php');
-			$clave="";
+			$folio="";
 		?>	
 	<!-- Navbar -->
 	
@@ -49,27 +49,28 @@
 					<img src="img/consultar.png" alt="IMG">
 				</div>
 				
-				<form class="contact1-form validate-form">
+				<form class="contact1-form validate-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<span class="contact1-form-title">
 						Consultar Traje
 					</span>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
-						<input class="input1" type="text" name="number" placeholder="">
+						<input class="input1" type="text" name="folio" id="folio" placeholder="ingresa el folio a buscar">
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="container-contact1-form-btn">
-						<button class="contact1-form-btn">
+						<button class="contact1-form-btn"  type="submit" name="buscar" id="buscar" value="Consultar una noticia">
 							<span>
 								Consultar Traje
 								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 							</span>
 						</button>
 					</div>
+
                     <div class="mt-4"></div>
                     <div class="container-contact1-form-btn">
-						<button class="contact1-form-btn">
+						<button class="contact1-form-btn" type="submit" id="todo" name="todo" value="Mostrar todas las noticias">
 							<span>
 								Mostrar Todo
 								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -77,6 +78,93 @@
 						</button>
 					</div>
 				</form>
+
+				<!-- php  -->
+				<?php
+					$db = new Database();
+			if (isset($_REQUEST['buscar'])){
+				//echo "Si entro a buscar una clave!!!";
+				$folio=isset($_REQUEST['folio']) ? $_REQUEST['folio'] :  null;
+
+				$query = $db->connect()->prepare('select * FROM rentas where folio = :folio');
+								$query->setFetchMode(PDO::FETCH_ASSOC);
+								$query->execute(['folio' => $folio]);
+								$row = $query->fetch();
+								if($query -> rowCount() <= 0){
+									echo "<br /><br /><h2>No existe ese número de clave.</h2>";
+								}elseif ($query -> rowCount() > 0){
+									print ("<br/><br/><br/>");
+									print ("Datos del registro.");
+									print ("<br/><br/><hr/><br/>");
+									print ("<table class='table table-striped'>\n");
+										print ("<tr>\n");
+											print ("<th>Id</th>\n");
+											print ("<td>".$row['folio']. "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>Cliente</th>\n");
+											print ("<td>" . $row['nombre_cliente'] . "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>Descripcion</th>\n");
+											print ("<td>" . $row['descripcion'] . "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>fecha apartado</th>\n");
+											print ("<td>" . $row['fecha_apartado'] . "</td>\n");
+										//$variable = utf8_decode($variable);
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>fecha entrega</th>\n");
+											print ("<td>" .$row['fecha_entrega']. "</td>\n");
+										print ("</tr>\n");
+										print ("<tr>\n");
+											print ("<th>estado renta</th>\n");
+											print ("<td>" . $row['estado_renta'] . "</td>\n");
+										print ("</tr>\n");
+									print ("</table>\n");
+									print ("<br /><hr />");
+				} 
+			}
+			if (isset($_REQUEST['todo'])){
+
+				$query = $db->connect()->prepare('select * FROM rentas order by folio desc');
+				$query->setFetchMode(PDO::FETCH_ASSOC);
+				$query->execute();
+				//$row = $query->fetch();
+				if($query -> rowCount() > 0){
+					print ("<br/><br/><br/>");
+					print ("Listado de noticias registradas.");
+					print ("<br/><br/><hr/><br/>");
+					print ("<table class='table table-striped'>\n");
+					print ("<tr>\n");
+					print ("<thead>\n");
+						print ("<th>folio</th>\n");
+						print ("<th>cliente</th>\n");
+						print ("<th>descripcion</th>\n");
+						print ("<th>fecha apartado</th>\n");
+						print ("<th>fecha entrega</th>\n");
+						print ("<th>estado renta</th>\n");
+						print ("</th>\n");
+					print ("</thead>\n");
+					while ($row = $query->fetch()){
+						print ("<tr>\n");
+						print ("<td>" . $row['folio'] . "</td>\n");
+						print ("<td>" . $row['nombre_cliente'] . "</td>\n");
+						print ("<td>" . $row['descripcion'] . "</td>\n");
+						print ("<td>" . $row['fecha_apartado'] . "</td>\n");
+						print ("<td>" . $row['fecha_entrega'] . "</td>\n");
+						print ("<td>" . $row['estado_renta'] . "</td>\n");
+						print ("</tr>\n");
+					}
+					print ("</table>\n");
+				}
+				else
+					print ("No hay registros disponibles");
+			}
+			//mysqli_close($conexion);
+		?>
+				<!-- php -->
 			</div>
 		</div>
 	</section>

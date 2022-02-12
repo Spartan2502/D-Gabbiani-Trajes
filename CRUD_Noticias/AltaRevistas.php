@@ -9,14 +9,23 @@
 		<link rel="icon" href="img/D' Gabbiani.png">
 	</head>
 	<body>
+
+	<!-- php  -->
 		<?php 
 			
-			//include('index.php');
 			include('database.php');
-			$clave=$titulo=$texto=$categoria=$tipo="";
+			$folio ="";
+			$fechaA="";
+			$cliente = "";
+			$descripcion = "";
+			$fechaE = "";
+			$monto = "";
+			$anticipo = "";
+			$adeudo = "";
+			$estado = "";
 			
 			$db = new Database();
-			$query = $db->connect()->prepare('select max(id) as maximo FROM noticias');
+			$query = $db->connect()->prepare('select max(folio) as maximo FROM rentas');
 			$query->execute();
 			$row = $query->fetch();
 			$numero=$row["maximo"];
@@ -28,26 +37,53 @@
 				$data = htmlspecialchars($data);
 				return $data;
 			}
+
+
 			if($_SERVER["REQUEST_METHOD"]=="POST"){
-				$clave = test_entrada($_POST["clave"]);
-			  $titulo = test_entrada($_POST["titulo"]);
-				$texto = test_entrada($_POST["texto"]);
-				$categoria = test_entrada($_POST["categoria"]);
-				$tipo = test_entrada($_POST["tipo"]);
+				$folio = test_entrada($_POST["folio"]);
+				$fechaA = test_entrada($_POST["fechaA"]);
+				$cliente = test_entrada($_POST["cliente"]);
+				$descripcion = test_entrada($_POST["descripcion"]);
+				$fechaE = test_entrada($_POST["fechaE"]);
+				$monto = test_entrada($_POST["monto"]);
+				$anticipo = test_entrada($_POST["anticipo"]);
+				$adeudo = test_entrada($_POST["adeudo"]);
+				$estado = test_entrada($_POST["estado"]);
 				$campos = array();
 
-				if($categoria==""){
-				array_push($campos, "Debes elegir una categoría para el Traje!!!");
+				
+				if($cliente == ""){
+					array_push($campos, "debes proporcionar el nombre del cliente");
+				}
+				if($descripcion == ""){
+					array_push($campos, "Proporciona una descripcion de la prenda");
+				}
+				if($fechaE==""){
+					array_push($campos, "Selecciona una fecha de entrega");
+				}
+				if($monto==""){
+					array_push($campos, "Ingresa el  monto de la renta");
+				}
+				if($anticipo==""){
+					array_push($campos, "Se necesita un anticipo del cliente");
+				}
+				if($estado==""){
+				array_push($campos, "Debes elegir un estado de la renta!!!");
+				}
+				if ( is_numeric($monto) ) {
+				} else {
+					array_push($campos, "Monto debe ser un numero");
+				}
+				if ( is_numeric($anticipo) ) {
+				} else {
+					array_push($campos, "Anticipo debe ser un numero");
+				}
+				if ( is_numeric($adeudo) ) {
+				} else {
+					array_push($campos, "El adeudo debe ser un numero");
 				}
 				
-				if($titulo == ""){
-					array_push($campos, "El campo titulo no pude estar vacío");
-				}
 
-				if($clave == "" || strlen($clave) >= 4){
-					array_push($campos, "El campo clave no puede estar vacío, ni tener mas de 3 caracteres.");
-				}
-				
 				if(count($campos) > 0){
 					echo "<div class='error'>";
 					for($i = 0; $i < count($campos); $i++){
@@ -95,28 +131,34 @@
 					<img src="img/agregar.png" alt="IMG">
 				</div>
 				
-				<form class="contact1-form validate-form">
+				<form class="contact1-form validate-form" method="POST" 
+						autocomplete="on"
+						action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<span class="contact1-form-title">
 						Agregar Renta
 					</span>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
-						<input class="input1" type="text" name="number" placeholder="Folio">
+						<label for="folio">Folio</label>	
+						<input class="input1" type="text"name="folio" id="folio" value="<?php echo $numero; ?>" disabled>
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="wrap-input1 validate-input" data-validate = "date is required">
-						<input class="input1" type="text" name="date" placeholder="Fecha de apartado">
+						<label for="fechaA">Fecha de Apartado</label>
+						<input class="input1" type="text" name="fechaA" id="fechaA" value="<?php echo date(" d/m/Y"); ?>" disabled>
 						<span class="shadow-input1"></span>
 					</div>
 					
-					<div class="wrap-input1 validate-input" data-validate = "Name is required">
-						<input class="input1" type="text" name="name" placeholder="Nombre del cliente">
+					<div class="wrap-input1 validate-input" data-validate = "Client Name is required">
+						<label for="name">Nombre Cliente</label>	
+						<input class="input1" type="text" name="cliente" id="cliente" placeholder="Nombre del cliente" value="<?php echo $cliente; ?>" required>
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Description is required">
-						<textarea class="input1" name="textarea" placeholder="Descripción de la prenda"></textarea>
+						<label for="description">Descripción de la prenda</label>
+						<textarea class="input1" name="descripcion" id="descripcion" placeholder="Descripción de la prenda" value="<?php echo $descripcion?>"></textarea>
 						<span class="shadow-input1"></span>
 					</div>
 					
@@ -125,50 +167,53 @@
 						<label for="fecha" class="form-label"></label>
 						<input type="date" 
 						class="form-control input1" 
-						id="fecha"  
-						name ="fecha" 
-						value="">
+						id="fechaE"  
+						name ="fechaE" 
+						value="<?php echo $fechaE; ?>">
 					</div>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Amount is required">
-						<input class="input1" type="text" name="number" placeholder="Monto de la renta">
+						<label for="price">Monto de la renta</label>	
+						<input class="input1" type="text" name="monto" id="monto" value="<?php echo $monto?>" placeholder="Monto de la renta">
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Advance is required">
-						<input class="input1" type="text" name="number" placeholder="Anticipo">
+					<label for="advance">Anticipo</label>
+						<input class="input1" type="text" name="anticipo" id="anticipo" value="<?php echo $anticipo?>"placeholder="Anticipo">
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="wrap-input1 validate-input" data-validate = "For paid is required">
-						<input class="input1" type="text" name="number" placeholder="Por pagar">
+					<label for="debit">Adeudo</label>
+						<input class="input1" type="text" name="adeudo" id="adeudo" value="<?php echo $adeudo ?> "placeholder="Por pagar">
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="wrap-input1 validate-input">
 						<label for="categoria" class="form-label">Estado de Renta</label>
-						<select class="input1" aria-label="Default select example" name="categoria" id="categoria">
+						<select class="input1" aria-label="Default select example" name="estado" id="estado">
 							<option class="input1" selected>Selecciona una categoría</option>
 							<option value="Rentado"
 							<?php 
-							if($categoria=="Rentado") 
+							if($estado=="Rentado") 
 							echo "selected" 
-							?>Rentado</option>
+							?>>Rentado</option>
 							<option value="Entrado"
 							<?php 
-							if($categoria=="Entregado") 
+							if($estado=="Entregado") 
 							echo "selected" 
-							?>Entregado</option>
+							?>>Entregado</option>
 							<option value="Entregado"
 							<?php 
-							if($categoria=="Apartado") 
+							if($estado=="Apartado") 
 							echo "selected" 
-							?>Apartado</option>
+							?>>Apartado</option>
 						</select>
 					</div><!--class="mb-3"-->
 					
 					<div class="container-contact1-form-btn">
-						<button class="contact1-form-btn">
+						<button class="contact1-form-btn" type="submit" name="enviar" id="enviar"> 
 							<span>
 								Generar Renta
 								<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -179,44 +224,40 @@
 			</div>
 		</div>
 	</section>
+
 		<?php
 			if (isset($_REQUEST['enviar'])){
-				$query = $db->connect()->prepare('SELECT clave FROM noticias WHERE clave = :clave');
-				$query->execute(['clave' => $clave]);
+
+				$query = $db->connect()->prepare('SELECT folio FROM rentas WHERE folio = :folio');
+				$query->execute(['folio' => $folio]);
 				$row = $query->fetch(PDO::FETCH_NUM);
 				if($query -> rowCount() <= 0){
-					//echo 'entro al if del insert!!!';
-					$clave=$_POST['clave'];
-					$titulo=$_POST['titulo'];
-					$tipo=$_POST['tipo'];
-					$texto=$_POST['texto'];
-					$fecha =$_POST['fecha'];
-					$categoria =$_POST['categoria'];
-					$insert="insert into noticias(clave,titulo,tipo,texto,fecha,categoria) values (:clave,:titulo,:tipo,:texto,:fecha,:categoria)";
+					$folio=$_POST['folio'];
+					$fechaA =$_POST['fechaA'];
+					$cliente=$_POST['cliente'];
+					$descripcion=$_POST['descripcion'];
+					$fechaE=$_POST['fechaE'];
+					$monto=$_POST['monto'];
+					$anticipo=$_POST['anticipo'];
+					$adeudo=$_POST['adeudo'];
+					$estado=$_POST['estado'];
+
+					$insert="insert into rentas(folio,fecha_apartado,nombre_cliente,descripcion,fecha_entrega,fecha_devolucion,monto_renta,anticipo,pago,saldo_pendiente,pago_total,estado_renta) values (:fechaA,:cliente,:descripcion,:fechaE,:fechaE,:monto,:anticipo,:anticipo,:adeudo,:monto,:estado)";
 					$insert = $db->connect()->prepare($insert);
-					$insert->bindParam(':clave',$clave,PDO::PARAM_STR, 25);
-					$insert->bindParam(':titulo',$titulo,PDO::PARAM_STR, 25);
-					$insert->bindParam(':tipo',$tipo,PDO::PARAM_STR,25);
-					$insert->bindParam(':texto',$texto,PDO::PARAM_STR,25);
-					$insert->bindParam(':fecha',$fecha,PDO::PARAM_STR);
-					$insert->bindParam(':categoria',$categoria,PDO::PARAM_STR);
+					$insert->bindParam(':folio',$folio,PDO::PARAM_STR);
+					$insert->bindParam(':fechaA',$fechaA,PDO::PARAM_STR);
+					$insert->bindParam(':cliente',$cliente,PDO::PARAM_STR, 25);
+					$insert->bindParam(':descripcion',$descripcion,PDO::PARAM_STR,25);
+					$insert->bindParam(':fechaE',$fechaE,PDO::PARAM_STR);
+					$insert->bindParam(':monto',$monto,PDO::PARAM_STR,25);
+					$insert->bindParam(':anticipo',$anticipo,PDO::PARAM_STR,25);
+					$insert->bindParam(':adeudo',$adeudo,PDO::PARAM_STR,25);
+					$insert->bindParam(':estado',$estado,PDO::PARAM_STR);
 					$insert->execute();
 					if (!$query){
 						echo "Error:",$sql->errorInfo();
 					}
 					echo "<br> El Traje FUE DADO	DE ALTA.";
-					echo "<br><h2>Datos de entrada:</h2>";
-					echo "Clave: ".$_POST['clave'];
-					echo "<br>";
-					echo "Título: ".$_POST['titulo'];
-					echo "<br>";
-					echo "Tipo: ".$_REQUEST['tipo'];
-					echo "<br>";
-					echo "Texto: ".$_REQUEST['texto'];
-					echo "<br>";
-					echo "Fecha: ".$_REQUEST['fecha'];
-					echo "<br>";
-					echo "Categoría: ".$_REQUEST['categoria'];
 					}else if ($query -> rowCount() > 0){
 						echo "<br> YA EXISTE UN TRAJE CON ESA CLAVE.";
 					}
