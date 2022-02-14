@@ -19,6 +19,7 @@
 			$cliente = "";
 			$descripcion = "";
 			$fechaE = "";
+			$fechaD = "";
 			$monto = "";
 			$anticipo = "";
 			$adeudo = "";
@@ -250,25 +251,69 @@
 					$cliente=$_POST['cliente'];
 					$descripcion=$_POST['descripcion'];
 					$fechaE=$_POST['fechaE'];
+					$fechaD= date("Y-m-d",strtotime($fechaE."+ 5 days"));
 					$monto=$_POST['monto'];
 					$anticipo=$_POST['anticipo'];
 					$adeudo=$_POST['adeudo'];
+					$deber=$monto-$anticipo;
 					$estado=$_POST['estado'];
 
-					$insert="insert into rentas(fecha_apartado,nombre_cliente,descripcion,fecha_entrega,fecha_devolucion,monto_renta,anticipo,pago,saldo_pendiente,pago_total,estado_renta) values (:fechaA,:cliente,:descripcion,:fechaE,:fechaE,:monto,:anticipo,:anticipo,:adeudo,:monto,:estado)";
+					$insert="insert into rentas(fecha_apartado,nombre_cliente,descripcion,fecha_entrega,fecha_devolucion,monto_renta,anticipo,pago,saldo_pendiente,pago_total,estado_renta) values (:fechaA,:cliente,:descripcion,:fechaE,:fechaD,:monto,:anticipo,:anticipo,:deber,:monto,:estado)";
 					$insert = $db->connect()->prepare($insert);
 					$insert->bindParam(':fechaA',$fechaA,PDO::PARAM_STR);
 					$insert->bindParam(':cliente',$cliente,PDO::PARAM_STR);
 					$insert->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
 					$insert->bindParam(':fechaE',$fechaE,PDO::PARAM_STR);
+					$insert->bindParam(':fechaD',$fechaD,PDO::PARAM_STR);
 					$insert->bindParam(':monto',$monto,PDO::PARAM_INT);
 					$insert->bindParam(':anticipo',$anticipo,PDO::PARAM_INT);
 					$insert->bindParam(':adeudo',$adeudo,PDO::PARAM_INT);
+					$insert->bindParam(':deber',$deber,PDO::PARAM_INT);
 					$insert->bindParam(':estado',$estado,PDO::PARAM_STR);
 					$insert->execute();
 					if (!$query){
 						echo "Error:",$sql->errorInfo();
 					}
+
+					echo"<br/><br/>Los datos fueron registrados con exito";
+					print ("<br/><hr/><br/>");
+					print ("<table class='table table-striped'>\n");
+						print ("<tr>\n");
+						print ("<th>Fecha de apartado</th>\n");
+						print ("<td>" . $fechaA . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+							print ("<th>Cliente</th>\n");
+							print ("<td>" . $cliente. "</td>\n");
+						print ("</tr>\n");
+						print ("<tr>\n");
+						print ("<th>Fecha de devolucion</th>\n");
+						print ("<td>" . $fechaD . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Fecha de entrega</th>\n");
+						print ("<td>"  .$fechaA . "</td>\n");
+						print ("</tr>\n");
+						print ("<tr>\n");
+							//$variable = utf8_decode($variable);
+						print ("</tr>\n");
+						print ("<tr>\n");
+							print ("<th>Anticipo</th>\n");
+							print ("<td>" .$anticipo. "</td>\n");
+						print ("</tr>\n");
+						print ("<tr>\n");
+							print ("<th>Monto</th>\n");
+							print ("<td>" .$monto. "</td>\n");
+						print ("</tr>\n");
+						print ("<tr>\n");
+							print ("<th>Saldo pendiente</th>\n");
+							print ("<td>" .$deber. "</td>\n");
+						print ("</tr>\n");
+						print ("<tr>\n");
+					print ("</table>\n");
+					print ("<hr />");					
+
+
 					echo "<br> El Traje FUE DADO	DE ALTA.";
 					}else if ($query -> rowCount() > 0){
 						echo "<br> YA EXISTE UN TRAJE CON ESA CLAVE.";

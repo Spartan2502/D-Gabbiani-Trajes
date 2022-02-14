@@ -10,19 +10,17 @@
 	 <body>
 
 
-		<?php
+	 <?php
 			//include('index.php');
-			include('./database.php');
+			include('database.php');
 			$db = new Database();
 			$folio="";
-
 			function test_entrada($data){
 				$data = trim($data);
 				$data = stripslashes($data);
 				$data = htmlspecialchars($data);
 				return $data;
 			}
-
 			if($_SERVER["REQUEST_METHOD"]=="POST"){
 				$folio = test_entrada($_POST["folio"]);
 			}
@@ -82,7 +80,7 @@
 					</span>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
-						<input class="input1" type="text" name="folio" placeholder="Folio de renta a modificar">
+						<input class="input1" type="text" name="folio" id="folio" placeholder="Folio de renta a modificar" value="<?php echo $folio;?>">
 						<span class="shadow-input1"></span>
 					</div>
 
@@ -98,7 +96,7 @@
 					<!-- php -->
 					<?php
 				if(isset($_REQUEST['buscar'])){
-					$clave=isset($_REQUEST['folio']) ? $_REQUEST['folio'] : null;
+					$folio=isset($_REQUEST['folio']) ? $_REQUEST['folio'] : null;
 
 					$query = $db->connect()->prepare('select * FROM rentas where folio = :folio');
 								$query->setFetchMode(PDO::FETCH_ASSOC);
@@ -106,105 +104,183 @@
 								$row = $query->fetch();
 								if($query -> rowCount() > 0){
 
-							
+							//$isCheckedL = $row['estado_renta'] == 'Apartado' ? 'checked' : '';
+							//$isCheckedN = $row['estado_renta'] == 'Rentado' ? 'checked' : '';
+							//$isCheckedI = $row['estado_renta'] == 'Devuelto' ? 'checked' : '';
 							echo
-								'<div class="mb-3">
-									<label for="exampleFormControlInput1" 
-										class="form-label">Folio:</label>
-									<input type="text" class="form-control" value="'.$row['folio'].'" disabled/>
-								</div>'.
-								'<div class="mb-3">
-									<label for="exampleFormControlInput1" 
-										class="form-label">Cliente:</label>
-									<input type="text" class="form-control" lang="es" href="qa-html-language-declarations.es"
-										name="titulo" value ="'.$row['nombre_cliente'].'"/>
-								</div>'.
-								'<div class="mb-3">
-									<label for="exampleFormControlInput1" 
-										class="form-label">Texto de la noticia:</label>
-									<textarea class="form-control" name="texto" rows="5" cols="40">'.$row['texto'].'</textarea>
-								</div>'.
-								'<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Fecha de publicación:</label>
-									<input type="date" class="form-control" name="fecha" value ="'.$row['fecha'].'">
-								</div>'.
-								'<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Categoría:</label>
-									<select class="form-select" aria-label="Default select example" name="categoria" id="categoria">
-										<option value="'.$row['categoria'].'">'.$row['categoria'].'</option>
-										 <option value="Clasificado">Clasificado</option>
-										 <option value="Deportes">Deportes</option>
-										 <option value="Policiaco">Policiaco</option>
-										 <option value="Principal">Principal</option>
-									</select>
-								</div>'.
-								'<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Tipo de noticias:</label>
-									<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Local"'.$isCheckedL.' />Local
-									<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Nacional"'.$isCheckedN.' />Nacional
-									<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Internacional"'.$isCheckedI.' />Internacional
-								</div>'.
-								'<div class="mb-3">
-									<button type="submit" class="btn btn-primary" name="cambiar">Cambiar datos</button>
-								</div>';
-						}else if ($query -> rowCount() <= 0){
-							echo "no existe esa clave de Noticia.";
-						}		 
-				}//if(isset($_REQUEST[''buscar]))
-				
+							'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Folio de renta a modificar:</label>
+							<input type="text" class="form-control" value="'.$row['folio'].'" readonly="readonly"/>
+						</div>'.
+						
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Nombre de cliente:</label>
+							<input type="text" class="form-control" lang="es" href="qa-html-language-declarations.es"
+								name="nombre_cliente" value ="'.$row['nombre_cliente'].'"/>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Descripción de la prenda:</label>
+							<textarea class="form-control" name="descripcion" rows="5" cols="40">'.$row['descripcion'].'</textarea>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Fecha de entrega:</label>
+							<input type="date" class="form-control" name="fecha_entrega" value ="'.$row['fecha_entrega'].'">
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Fecha de devolución:</label>
+							<input type="date" class="form-control" name="fecha_devolucion" value ="'.$row['fecha_devolucion'].'" readonly="readonly">
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Monto de la renta:</label>
+							<input type="number" class="form-control" lang="es" href="qa-html-language-declarations.es"
+								name="monto_renta" value ="'.$row['monto_renta'].'"/>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Anticipo:</label>
+							<input type="number" class="form-control" lang="es" href="qa-html-language-declarations.es"
+								name="anticipo" value ="'.$row['anticipo'].'" readonly="readonly"/>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Pago:</label>
+							<input type="number" class="form-control" lang="es" href="qa-html-language-declarations.es"
+								name="pago" value ="'.$row['pago'].'"/>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Saldo pendiente:</label>
+							<input type="number" class="form-control" lang="es" href="qa-html-language-declarations.es"
+								name="saldo_pendiente" value ="'.$row['saldo_pendiente'].'" readonly="readonly"/>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" 
+								class="form-label">Pago total:</label>
+							<input type="number" class="form-control" lang="es" href="qa-html-language-declarations.es"
+								name="pago_total" value ="'.$row['pago_total'].'" readonly="readonly"/>
+						</div>'.
+						'<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Estado de la renta:</label>
+							<select class="form-select" aria-label="Default select example" name="estado_renta" id="estado_renta">
+								<option value="'.$row['estado_renta'].'">'.$row['estado_renta'].'</option>
+								 <option value="Apartado">Apartado</option>
+								 <option value="Entregado">Entregado</option>
+								 <option value="Devuelto">Devuelto</option>
+								 <option value="Cancelacion">Cancelación</option>
+							</select>
+						</div>'.
+						// '<div class="mb-3">
+						// 	<label for="exampleFormControlInput1" class="form-label">Tipo de noticias:</label>
+						// 	<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Local"'.$isCheckedL.' />Local
+						// 	<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Nacional"'.$isCheckedN.' />Nacional
+						// 	<input type="radio" class="form-check-input" name="tipo" id="tipo" value ="Internacional"'.$isCheckedI.' />Internacional
+						// </div>'.
+						'<div class="mb-3">
+							<button type="submit" class="btn btn-primary" name="cambiar">Cambiar datos</button>
+						</div>';
+				}else if ($query -> rowCount() <= 0){
+					echo "No existe ese Folio de Renta.";
+				}		 
+				}
+
+
+				//borrar de aqui
 				if(isset($_REQUEST['cambiar'])){ 
 
-					$clave=$_POST['clave'];
-					$titulo=$_POST['titulo'];
-					$tipo=$_POST['tipo'];
-					$texto=$_POST['texto'];
-					$fecha =$_POST['fecha'];
-					$categoria =$_POST['categoria'];
+					//$folio=$_POST['folio'];
+					$folio=$_POST['folio'];		
+					$nombre_cliente=$_POST['nombre_cliente'];
+					$descripcion=$_POST['descripcion'];
+					$fecha_entrega =$_POST['fecha_entrega'];
+					$fecha_devolucion =date("Y-m-d",strtotime($fecha_entrega."+ 5 days")); 
+					$monto_renta=$_POST['monto_renta'];
+					$anticipo=$_POST['anticipo'];
+					$pago=$_POST['pago'];
+					$saldo_pendiente=$monto_renta-$anticipo-$pago;
+					$pago_total =$anticipo+$pago;
+					$estado_renta =$_POST['estado_renta'];
 					
-					$sql = "UPDATE noticias SET clave=?, titulo=?, texto=?, fecha=?, categoria=?, tipo=? WHERE clave=?";
+					$sql = "UPDATE rentas SET  nombre_cliente=?, descripcion=?, fecha_entrega=?, fecha_devolucion=?, monto_renta=?, anticipo=?, pago=?, saldo_pendiente=?, pago_total=?, estado_renta=? WHERE folio=?";
 					$stmt= $db->connect()->prepare($sql);
-					$stmt->execute([$clave, $titulo, $texto, $fecha, $categoria, $tipo, $clave]);
-
+					$stmt->execute([ $nombre_cliente, $descripcion, $fecha_entrega, $fecha_devolucion, $monto_renta, $anticipo, $pago, $saldo_pendiente, $pago_total, $estado_renta, $folio]);
+						
 					
+					/*$consulta= 'update rentas set folio= : folio, nombre_cliente = :nombre_cliente, descripcion = :descripcion, fecha_entrega = :fecha_entrega, estado_renta = :estado_renta, monto_renta = :monto_renta, saldo_pendiente = :saldo_pendiente, pago_total = :pago_total where folio = :folio';
+					$consulta = $db->connect()->prepare($consulta);
+					$consulta->bindParam(':folio',$folio,PDO::PARAM_STR, 25);
+					$consulta->bindParam(':nombre_cliente',$nombre_cliente,PDO::PARAM_STR, 25);
+					$consulta->bindParam(':descripcion',$descripcion,PDO::PARAM_STR,25);
+					$consulta->bindParam(':fecha_entrega',$fecha_entrega,PDO::PARAM_STR,25);
+					$consulta->bindParam(':estado_renta',$estado_renta,PDO::PARAM_STR);
+					$consulta->bindParam(':monto_renta',$monto_renta,PDO::PARAM_STR);
+					$consulta->bindParam(':saldo_pendiente',$saldo_pendiente,PDO::PARAM_STR);
+					$consulta->bindParam(':pago_total',$pago_total,PDO::PARAM_STR);
+					$consulta->execute();
+					*/
+
 					$row = $stmt->fetch();
 					if($stmt->rowCount() > 0){
 						echo"<br/><br/>Los datos fueron modificados con exito";
 						print ("<br/><br/><hr/><br/>");
 						print ("<table class='table table-striped'>\n");
-							print ("<tr>\n");
-								print ("<th>Clave</th>\n");
-								print ("<td>" . $clave . "</td>\n");
-							print ("</tr>\n");
-							print ("<tr>\n");
-								print ("<th>Título</th>\n");
-								print ("<td>" . $_REQUEST['titulo'] . "</td>\n");
-							print ("</tr>\n");
-							print ("<tr>\n");
-								print ("<th>Texto</th>\n");
-								print ("<td>" . $texto . "</td>\n");
-							print ("</tr>\n");
-							print ("<tr>\n");
-								print ("<th>Categoría</th>\n");
-								print ("<td>" . $categoria . "</td>\n");
-								//$variable = utf8_decode($variable);
-							print ("</tr>\n");
-							print ("<tr>\n");
-								print ("<th>Fecha</th>\n");
-								print ("<td>" .$fecha. "</td>\n");
-							print ("</tr>\n");
-							print ("<tr>\n");
-								print ("<th>Tipo</th>\n");
-								print ("<td>" .$tipo. "</td>\n");
-							print ("</tr>\n");
-							print ("<tr>\n");
+						print ("<tr>\n");
+						print ("<th>Folio</th>\n");
+						print ("<td>". $_REQUEST['folio']. "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						
+						print ("<th>Nombre del cliente</th>\n");
+						print ("<td>" . $_REQUEST['nombre_cliente'] . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Descripción</th>\n");
+						print ("<td>" . $_REQUEST['descripcion'] . "</td>\n");
+					//$variable = utf8_decode($variable);
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Fecha de entrega</th>\n");
+						print ("<td>" .$_REQUEST['fecha_entrega']. "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Fecha de devolución</th>\n");
+						print ("<td>" . $fecha_devolucion . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Monto de la renta</th>\n");
+						print ("<td>".$_REQUEST['monto_renta']. "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Anticipo</th>\n");
+						print ("<td>" . $_REQUEST['anticipo'] . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Pago</th>\n");
+						print ("<td>" . $_REQUEST['pago'] . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Saldo Pendiente</th>\n");
+						print ("<td>" .$saldo_pendiente . "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Pago total</th>\n");
+						print ("<td>" .$pago_total. "</td>\n");
+					print ("</tr>\n");
+					print ("<tr>\n");
+						print ("<th>Estado de la renta</th>\n");
+						print ("<td>" . $_REQUEST['estado_renta'] . "</td>\n");
+					print ("</tr>\n");
 						print ("</table>\n");
 						print ("<br /><hr />");
-					}else if ($consulta->rowCount()<=  0){
+					}else if ($stmt->rowCount()<=  0){
 						echo "No se actualizó el registro!!!";
 					}
 				}
+				//hasta aqui
 			?>
-			<!-- php -->
 				</form>
 			</div>
 		</div>
