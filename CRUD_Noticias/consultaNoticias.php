@@ -21,13 +21,14 @@
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
+			<div class="collapse navbar-collapse" id="navbarNav" style="justify-content: space-between;">
+				<div>
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="./AltaRevistas.php">Estado de Renta</a>
+						<a class="nav-link"  href="./AltaRevistas.php">Estado de Renta</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Consultar Traje</a>
+						<a class="nav-link active" aria-current="page" href="">Consultar Traje</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="./cambiosNoticias.php">Modificar Renta</a>
@@ -35,7 +36,19 @@
 					<li class="nav-item">
 						<a class="nav-link" href="./bajaRevistas.php">Eliminar Traje</a>
 					</li>
+					
 				</ul>
+				</div>
+				<div>
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="./menu.php">Volver</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../cerrar.php">Cerrar sesión</a>
+					</li>
+				</ul>
+				</div>
 			</div>
 		</div>
 	</nav>
