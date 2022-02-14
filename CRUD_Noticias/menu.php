@@ -45,7 +45,7 @@
             <div class="card" >
                 <div class="content">
 					
-                    <div class="imgBx"><img src="./img/traje-de-traje-y-corbata.png"></div>
+                    <div class="imgBx"><a href="./AltaRevistas.php" class="cta" ><img src="./img/traje-de-traje-y-corbata.png" ></a></div>
                 </div>
                 <ul class="sci">
                     <li style="--i:1">
@@ -56,7 +56,7 @@
             
             <div class="card" >
                 <div class="content">
-                    <div class="imgBx"><img src="./img/usuario.png"></div>
+                    <div class="imgBx"><a href="./AltaRevistas.php" class="cta" ><img src="./img/usuario.png"></a></div>
                 </div>
                 <ul class="sci">
                     <li style="--i:1">
