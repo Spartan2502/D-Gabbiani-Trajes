@@ -34,28 +34,43 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Nuevo Cliente</title>
-	<link rel="stylesheet" href="css/estilo.css">
+	<link rel="stylesheet" href="css/insert.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
-<body>
-	<div class="contenedor">
-		<h2>CRUD EN PHP CON MYSQL</h2>
-		<form action="" method="post">
-			<div class="form-group">
-				<input type="text" name="nombre" placeholder="Nombre" class="input__text">
-				<input type="text" name="apellidos" placeholder="Apellidos" class="input__text">
-			</div>
-			<div class="form-group">
-				<input type="text" name="telefono" placeholder="Teléfono" class="input__text">
-				<input type="text" name="ciudad" placeholder="Ciudad" class="input__text">
-			</div>
-			<div class="form-group">
-				<input type="text" name="correo" placeholder="Correo electrónico" class="input__text">
-			</div>
-			<div class="btn__group">
-				<a href="menu.php" class="btn btn__danger">Cancelar</a>
-				<input type="submit" name="guardar" value="Guardar" class="btn btn__primary">
-			</div>
-		</form>
-	</div>
+<div class="signupSection">
+    <div class="info">
+      <h2>Nuevo Cliente</h2>
+      <i class="bi bi-file-person icon"></i>
+      <p>Confeccionamos para ti momentos inolvidables desde 1990</p>
+    </div>
+    <form action="#" method="POST" class="signupForm" name="signupform">
+      <h2>Nuevo Registro</h2>
+      <ul class="noBullet">
+        <li>
+          <label for="name"></label>
+          <input type="text" class="inputFields" id="name" name="name" placeholder="Nombre" value="" required/>
+        </li>
+        <li>
+          <label for="last_name"></label>
+          <input type="text" class="inputFields" id="last_name" name="last_name" placeholder="Apellidos" value="" required/>
+        </li>
+        <li>
+          <label for="phone"></label>
+          <input type="text" class="inputFields" id="phone" name="phone" placeholder="Teléfono" value="" required/>
+        </li>
+        <li>
+          <label for="city"></label>
+          <input type="text" class="inputFields" id="city" name="city" placeholder="Cuidad" value="" required/>
+        </li>
+        <li>
+          <label for="email"></label>
+          <input type="email" class="inputFields" id="email" name="email" placeholder="Correo electrónico" value="" required/>
+        </li>
+        <li id="center-btn">
+          <input type="submit" id="join-btn" name="save" alt="save" value="Guardar">
+        </li>
+      </ul>
+    </form>
+  </div>
 </body>
 </html>
