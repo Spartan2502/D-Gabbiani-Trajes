@@ -117,6 +117,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="./bajaRevistas.php">Eliminar Traje</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../cerrar.php">Cerrar sesión</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -140,13 +143,13 @@
 					
 					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
 						<label for="folio">Folio</label>	
-						<input class="input1" type="text"name="folio" id="folio" value="<?php echo $numero; ?>" disabled>
+						<input class="input1" type="text"name="folio" id="folio" value="<?php echo $numero; ?>" readonly>
 						<span class="shadow-input1"></span>
 					</div>
 					
 					<div class="wrap-input1 validate-input" data-validate = "date is required">
 						<label for="fechaA">Fecha de Apartado</label>
-						<input class="input1" type="text" name="fechaA" id="fechaA" value="<?php echo date(" d/m/Y"); ?>" disabled>
+						<input class="input1" type="text" name="fechaA" id="fechaA" value="<?php echo date(" d/m/Y"); ?>" readonly>
 						<span class="shadow-input1"></span>
 					</div>
 					
@@ -233,7 +236,7 @@
 				$row = $query->fetch(PDO::FETCH_NUM);
 				if($query -> rowCount() <= 0){
 					$folio=$_POST['folio'];
-					$fechaA =$_POST['fechaA'];
+					$fechaA = date("Y-m-d"); ;
 					$cliente=$_POST['cliente'];
 					$descripcion=$_POST['descripcion'];
 					$fechaE=$_POST['fechaE'];
@@ -242,16 +245,15 @@
 					$adeudo=$_POST['adeudo'];
 					$estado=$_POST['estado'];
 
-					$insert="insert into rentas(folio,fecha_apartado,nombre_cliente,descripcion,fecha_entrega,fecha_devolucion,monto_renta,anticipo,pago,saldo_pendiente,pago_total,estado_renta) values (:fechaA,:cliente,:descripcion,:fechaE,:fechaE,:monto,:anticipo,:anticipo,:adeudo,:monto,:estado)";
+					$insert="insert into rentas(fecha_apartado,nombre_cliente,descripcion,fecha_entrega,fecha_devolucion,monto_renta,anticipo,pago,saldo_pendiente,pago_total,estado_renta) values (:fechaA,:cliente,:descripcion,:fechaE,:fechaE,:monto,:anticipo,:anticipo,:adeudo,:monto,:estado)";
 					$insert = $db->connect()->prepare($insert);
-					$insert->bindParam(':folio',$folio,PDO::PARAM_STR);
 					$insert->bindParam(':fechaA',$fechaA,PDO::PARAM_STR);
-					$insert->bindParam(':cliente',$cliente,PDO::PARAM_STR, 25);
-					$insert->bindParam(':descripcion',$descripcion,PDO::PARAM_STR,25);
+					$insert->bindParam(':cliente',$cliente,PDO::PARAM_STR);
+					$insert->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
 					$insert->bindParam(':fechaE',$fechaE,PDO::PARAM_STR);
-					$insert->bindParam(':monto',$monto,PDO::PARAM_STR,25);
-					$insert->bindParam(':anticipo',$anticipo,PDO::PARAM_STR,25);
-					$insert->bindParam(':adeudo',$adeudo,PDO::PARAM_STR,25);
+					$insert->bindParam(':monto',$monto,PDO::PARAM_INT);
+					$insert->bindParam(':anticipo',$anticipo,PDO::PARAM_INT);
+					$insert->bindParam(':adeudo',$adeudo,PDO::PARAM_INT);
 					$insert->bindParam(':estado',$estado,PDO::PARAM_STR);
 					$insert->execute();
 					if (!$query){

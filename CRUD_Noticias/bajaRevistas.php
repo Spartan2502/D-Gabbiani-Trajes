@@ -53,7 +53,7 @@
 					</span>
 					
 					<div class="wrap-input1 validate-input" data-validate = "Folio is required">
-						<input class="input1" type="text" name="folio" id="folio" placeholder="Ingresa el folio a eliminar" >
+						<input class="input1" type="text" name="folio" id="folio" placeholder="Ingresa el folio a eliminar" value="<?php echo $folio; ?>">
 						<span class="shadow-input1"></span>
 					</div>
 					
@@ -109,16 +109,19 @@
 									print ("<br /><hr />");
 									print ("<input type='submit' name='borrar' id='borrar' value='Eliminar registro'/></form>\n");
 								}
+
 							}
 							if (isset($_REQUEST['borrar'])){
 								$folio=isset($_REQUEST['folio']) ? $_REQUEST['folio'] :  null;
 								
-								$query = $db->connect()->prepare('DELETE FROM rentas WHERE folio == :folio');
+								$query = $db->connect()->prepare('DELETE FROM rentas WHERE folio = :folio');
 								$query->execute(['folio' => $folio]);
+								
 								if (!$query){
 									echo "Error".$query->errorInfo();
 								}
 								echo "<br /><hr />Registro de renta eliminado.";
+
 								// Cerrar conexión 
 							$query->closeCursor(); // opcional en MySQL, dependiendo del controlador de base de datos puede ser obligatorio
 							$query = null; // obligado para cerrar la conexión
